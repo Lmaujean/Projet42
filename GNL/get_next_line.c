@@ -6,7 +6,7 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:55:43 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/19 16:36:18 by lmaujean         ###   ########.fr       */
+/*   Updated: 2021/04/20 14:42:21 by lmaujean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
+
+
 int	get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
 	size_t		sizemax;
 	static char	*current;
-	int 		index;
+	//int 		index;
 	
 	if (fd < 0  || fd > FD_MAX || BUFFER_SIZE < 1 || !*line)
 		return (-1);
@@ -45,11 +47,16 @@ int	get_next_line(int fd, char **line)
 	if (!*line)
 		return (-1);
 	sizemax = 1;
+	if (current != 0)
+	{
+		
+	}
 	while (sizemax > 0)
 	{
 		sizemax = read(fd, buffer, BUFFER_SIZE);
 		buffer[sizemax] = '\0';
 		if (ft_strchr(buffer, '\n'))
-			line = ft_strjoin(*line, ft_strchr(buffer, '\n'));
+			ft_strjoin(*line, buffer);
+		current = ft_strjoin(current, buffer);
 	}
 }
