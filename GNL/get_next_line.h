@@ -6,14 +6,14 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:21:36 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/20 13:39:17 by lmaujean         ###   ########.fr       */
+/*   Updated: 2021/04/26 01:06:53 by louismauj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 80
+# define BUFFER_SIZE 200
 #endif
 #ifndef	FD_MAX
 # define FD_MAX 256
@@ -23,7 +23,8 @@
 # include <unistd.h>
 
 char	*ft_strdup(const char *s1);
-int		get_next_line(int fd, char **line);
+void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd);
+int	    get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

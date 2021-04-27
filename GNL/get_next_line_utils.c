@@ -12,12 +12,13 @@
 
 #include "get_next_line.h"
 
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 	
 	i = 0;
-	while (s[i] != '\n')
+	while (s[i])
 		i++;
 	return (i);
 }
@@ -87,11 +88,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str[i] = s1[i];
 		i++;
 	}
-	free(s1);
-	while (*s2 != '\n')
+	while (s2[i])
 	{
-		str[i] = *s2;
-		s2++;
+		str[i] = s2[i];
 		i++;
 	}
 	str[i] = '\0';

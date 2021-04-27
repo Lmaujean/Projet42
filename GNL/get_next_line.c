@@ -6,7 +6,7 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:55:43 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/20 14:42:21 by lmaujean         ###   ########.fr       */
+/*   Updated: 2021/04/26 01:43:57 by louismauj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,51 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
+void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd)
+{
+	char *temp;
+
+	*sizeread = 1;
+	if (*str == 0)
+		*str = ft_calloc(sizeof(char), 1);
+	while (ft_strchr(*str, '\n') == 0 && *sizeread > 0)
+	 {
+		*sizeread = read(fd, buf, BUFFER_SIZE);
+		buf[*sizeread] = 0;
+		temp = ft_strjoin(*str, buf);
+		free(*str);
+		*str = ft_strdup(temp);
+		free(temp);
+		
+	 }
+}
 
 
 int	get_next_line(int fd, char **line)
 {
-	char		buffer[BUFFER_SIZE + 1];
-	size_t		sizemax;
-	static char	*current;
-	//int 		index;
-	
-	if (fd < 0  || fd > FD_MAX || BUFFER_SIZE < 1 || !*line)
+	static char	*str = 0;
+	int			sizeread;
+	char		buf[BUFFER_SIZE + 1];
+	char 		*temp;
+
+	if (fd < 0 && BUFFER_SIZE < 0)
 		return (-1);
-	*line = malloc(1);
-	if (!*line)
-		return (-1);
-	sizemax = 1;
-	if (current != 0)
+	read_line(&str, &sizeread, buf, fd);
+	if (sizeread == 0)
 	{
-		
+		*line = ft_strdup(str);
+		free(str);
+		str = 0;
+		return (0);
 	}
-	while (sizemax > 0)
+	if (sizeread > 0)
 	{
-		sizemax = read(fd, buffer, BUFFER_SIZE);
-		buffer[sizemax] = '\0';
-		if (ft_strchr(buffer, '\n'))
-			ft_strjoin(*line, buffer);
-		current = ft_strjoin(current, buffer);
+	 	*line = ft_substr(str, 0, (ft_strchr(str, '\n') - str));
+	 	temp = ft_strdup(str + ft_strlen(*line) + 1);
+	 	free(str);
+		str = temp;
+		free(temp);
+	 	return (1);
 	}
+	return (-1);
 }
