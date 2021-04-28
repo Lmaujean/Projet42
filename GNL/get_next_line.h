@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 200
+# define BUFFER_SIZE 1
 #endif
 #ifndef	FD_MAX
 # define FD_MAX 256
@@ -23,7 +23,8 @@
 # include <unistd.h>
 
 char	*ft_strdup(const char *s1);
-void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd);
+char	*ft_strcpy(char *dest, const char *src);
+//void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd);
 int	    get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);

@@ -15,12 +15,12 @@
 char	*ft_strdup(const char *s1)
 {
 	char	*str;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (s1[i] != '\0')
 		i++;
-	str = ft_calloc(sizeof(char), i + 1);
+	str = ft_calloc(sizeof(char), ft_strlen(s1) + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -31,6 +31,21 @@ char	*ft_strdup(const char *s1)
 	}
 	return (str);
 }
+
+char	*ft_strcpy(char *dest, const char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = ((char *)src)[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
 
 void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd)
 {
@@ -47,7 +62,6 @@ void	read_line(char **str, int *sizeread, char buf[BUFFER_SIZE], int fd)
 		free(*str);
 		*str = ft_strdup(temp);
 		free(temp);
-		
 	 }
 }
 
@@ -58,9 +72,8 @@ int	get_next_line(int fd, char **line)
 	int			sizeread;
 	char		buf[BUFFER_SIZE + 1];
 	char 		*temp;
-
-	if (fd < 0 && BUFFER_SIZE < 0)
-		return (-1);
+	
+	
 	read_line(&str, &sizeread, buf, fd);
 	if (sizeread == 0)
 	{
@@ -75,8 +88,9 @@ int	get_next_line(int fd, char **line)
 	 	temp = ft_strdup(str + ft_strlen(*line) + 1);
 	 	free(str);
 		str = temp;
-		free(temp);
 	 	return (1);
 	}
+	if (fd == - 1 && BUFFER_SIZE > 0)
+		free(str);	
 	return (-1);
 }

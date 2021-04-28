@@ -43,7 +43,7 @@ void	*ft_calloc(size_t count, size_t size)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*str;
-	unsigned int	i;
+	size_t			i;
 
 	i = 0;
 	if (!s)
@@ -70,30 +70,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*str;
-	int			i;
-	
-	i = 0;
-	if (!s2)
+
+	if (!s1 || !s2)
 		return (NULL);
-	if (!s1)
-	{
-		s1 = ft_strdup(s2);
-		return ((char *)s1);
-	}	
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[i])
-	{
-		str[i] = s2[i];
-		i++;
-	}
-	str[i] = '\0';
+	ft_strcpy(str, s1);
+	ft_strcpy(str + ft_strlen(str), s2);
 	return (str);
 }
 
@@ -102,13 +86,13 @@ char	*ft_strchr(const char *s, int c)
 	size_t	i;
 
 	i = 0;
-	if ((char)c == '\0')
-		return ((char *)s + ft_strlen(s));
+	//if ((char)c == '\0')
+	//	return ((char *)s + ft_strlen(s));
 	while (s[i])
 	{
 		if ((char)c == s[i])
 			return ((char *)s + i);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
