@@ -6,17 +6,16 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:41:33 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/20 14:02:08 by lmaujean         ###   ########.fr       */
+/*   Updated: 2021/04/29 02:19:24 by louismauj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s[i])
 		i++;
@@ -86,8 +85,8 @@ char	*ft_strchr(const char *s, int c)
 	size_t	i;
 
 	i = 0;
-	//if ((char)c == '\0')
-	//	return ((char *)s + ft_strlen(s));
+	if ((char)c == '\0')
+		return ((char *)s + ft_strlen(s));
 	while (s[i])
 	{
 		if ((char)c == s[i])
