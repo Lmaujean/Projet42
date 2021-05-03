@@ -1,13 +1,5 @@
 #include "ft_printf.h"
 
-t_struc     init_flags(void)
-{
-    t_struc     struc;
-
-    
-
-}
-
 int ft_printf(const char *str, ...)
 {
     va_list args;
