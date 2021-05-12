@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	str = malloc(size * count);
 	if (!str)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (i != size * count)
 	{
@@ -71,10 +71,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char		*str;
 
 	if (!s1 || !s2)
-		return (NULL);
+		return (0);
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
-		return (NULL);
+		return (0);
 	ft_strcpy(str, s1);
 	ft_strcpy(str + ft_strlen(str), s2);
 	return (str);

@@ -28,10 +28,13 @@ int main()
 	char	*str;
 
 	fd = open("/Users/louismaujean/42/GNL/text.txt", O_RDONLY);
-	printf("%d\n", get_next_line(fd, &str));
-	printf("%s\n", str);
-	printf("%d\n", get_next_line(fd, &str));
-	printf("%s\n", str);
+	//while (get_next_line(fd, &str) != '\n' || get_next_line(fd, &str))
+	//{
+		printf("%d\n", get_next_line(fd, &str));
+		printf("%s\n", str);
+		printf("%d\n", get_next_line(fd, &str));
+		printf("%s\n", str);
+	//}	
 
 	return 0;
 }

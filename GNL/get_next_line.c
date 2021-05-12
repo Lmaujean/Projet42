@@ -6,7 +6,7 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:55:43 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/29 02:24:47 by louismauj        ###   ########.fr       */
+/*   Updated: 2021/04/29 02:53:42 by louismauj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1)
 		i++;
 	str = ft_calloc(sizeof(char), ft_strlen(s1) + 1);
 	if (!str)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (s1[i] != '\0')
 	{
@@ -79,7 +79,7 @@ int	get_next_line(int fd, char **line)
 		str = 0;
 		return (0);
 	}
-	if (sizeread > 0)
+	if (sizeread >= 1)
 	{
 		*line = ft_substr(str, 0, (ft_strchr(str, '\n') - str));
 		temp = ft_strdup(str + ft_strlen(*line) + 1);

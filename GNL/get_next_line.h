@@ -6,7 +6,7 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 13:21:36 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/04/29 02:26:43 by louismauj        ###   ########.fr       */
+/*   Updated: 2021/04/29 02:39:23 by louismauj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-# ifndef	FD_MAX
+# ifndef FD_MAX
 #  define FD_MAX 256
 # endif
 
